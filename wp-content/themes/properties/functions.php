@@ -3,24 +3,14 @@
 add_theme_support('menus');
 add_theme_support('post-thumbnails');
 
+require 'post-types/property.php';
+require 'taxonomies/transaction.php';
+
 function coderslab_enqueue_script() {
 
     //dołączamy Sleek Slider
 
-    wp_enqueue_script(
-        'slick',
-        'https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick.js',
-        ['jquery']);
 
-    wp_enqueue_style(
-        'slick',
-        'https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick.min.css'
-    );
-
-    wp_enqueue_style(
-        'slick-theme',
-        'https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick-theme.min.css.map'
-    );
 
     //dołączmy bootstrap
     wp_enqueue_script(
@@ -40,7 +30,7 @@ function coderslab_enqueue_script() {
     // dołączamy javaScript
     wp_enqueue_script(
         'juhuhuhuh',
-        get_stylesheet_directory_uri() . '/js/app.js');
+        get_stylesheet_directory_uri() . '/js/app.js', ['jquery']);
 
     // dołączamy css
     wp_enqueue_style(
@@ -48,6 +38,11 @@ function coderslab_enqueue_script() {
         get_stylesheet_directory_uri() . '/css/main.css',
         ['bootstrap'],
         true );
+
+    wp_enqueue_script(
+        'slider',
+        get_stylesheet_directory_uri(). '/slick/slick.js', ['jquery']
+    );
 
 }
 add_action( 'wp_enqueue_scripts' , 'coderslab_enqueue_script' );
